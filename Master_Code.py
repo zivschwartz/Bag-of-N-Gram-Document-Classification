@@ -59,7 +59,7 @@ full_train[:], full_train_target[:] = zip(*train_combined)
 
 #Combining train and target and shuffling data for random sampling
 test_combined = list(zip(test, test_target))
-random.shuffle(train_combined)
+random.shuffle(test_combined)
 test[:], test_target[:] = zip(*test_combined)
 
 #Split full train/target into sub-training and validation sets
