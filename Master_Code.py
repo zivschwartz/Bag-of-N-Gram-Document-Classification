@@ -49,13 +49,13 @@ test_dir = '/Users/zivschwartz1/IMDB/test/'
 train = []
 test = []
 
-####################################################################################
-################################# Baseline Model ###################################
-####################################################################################
-
 #Create full train/test lists and their target lists
 full_train, full_train_target = process_docs(train_dir, train)
 test, test_target = process_docs(test_dir, test)
+
+####################################################################################
+################################# Baseline Model ###################################
+####################################################################################
 
 #Combining train and target and shuffling data for random sampling
 train_combined = list(zip(full_train, full_train_target))
