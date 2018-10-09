@@ -301,6 +301,12 @@ print("Test Acc {}".format(test_model(test_loader, model)))
 #Test Acc 80.284
 
 ####################################################################################
+############################### Tokenization Schemes ###############################
+####################################################################################
+
+
+
+####################################################################################
 ############################### Model Hyperparameters ##############################
 ####################################################################################
 
@@ -874,8 +880,8 @@ print("After training for {} epochs".format(num_epochs))
 print("Val Acc {}".format(test_model(val_loader, model)))
 print("Test Acc {}".format(test_model(test_loader, model)))
 #After training for 10 epochs
-#Val Acc 86.82
-#Test Acc 82.368
+#Val Acc 86.28
+#Test Acc 81.896
 
 ####################################################################################
 ####################################################################################
@@ -883,6 +889,7 @@ print("Test Acc {}".format(test_model(test_loader, model)))
 #Test 3. Embedding Size (Default Embedding Size = 100)
 #Embedding Size tested at [25, 50, 150]
 #All other hyperparameters at default values 
+
 max_vocab_size = 10000
 # save index 0 for unk and 1 for pad
 PAD_IDX = 0
@@ -1066,8 +1073,8 @@ print("After training for {} epochs".format(num_epochs))
 print("Val Acc {}".format(test_model(val_loader, model)))
 print("Test Acc {}".format(test_model(test_loader, model)))
 #After training for 10 epochs
-#Val Acc 83.94
-#Test Acc 81.244
+#Val Acc 83.74
+#Test Acc 80.712
 
 ####################################################################################
 
@@ -1121,8 +1128,8 @@ print("After training for {} epochs".format(num_epochs))
 print("Val Acc {}".format(test_model(val_loader, model)))
 print("Test Acc {}".format(test_model(test_loader, model)))
 #After training for 10 epochs
-#Val Acc 83.36
-#Test Acc 80.616
+#Val Acc 83.5
+#Test Acc 80.368
 
 ####################################################################################
 
@@ -1176,8 +1183,8 @@ print("After training for {} epochs".format(num_epochs))
 print("Val Acc {}".format(test_model(val_loader, model)))
 print("Test Acc {}".format(test_model(test_loader, model)))
 #After training for 10 epochs
-#Val Acc 83.06
-#Test Acc 80.352
+#Val Acc 82.98
+#Test Acc 79.304
 
 ####################################################################################
 ############################ Optimization Hyperparameters ##########################
@@ -1186,6 +1193,7 @@ print("Test Acc {}".format(test_model(test_loader, model)))
 #Test 1. Optimizer (Default Optimizer = Adam)
 #Optimizer SGD Test
 #Reset all other hyperparameters
+
 emb_dim = 100
 model = BagOfWords(len(id2token), emb_dim)
 
@@ -1194,7 +1202,8 @@ num_epochs = 10 # number epoch to train
 
 # Criterion and Optimizer
 criterion = torch.nn.CrossEntropyLoss()  
-optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
+#Optimizer set to SGD
+optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate)
 
 # Function for testing the model
 def test_model(loader, model):
@@ -1235,8 +1244,8 @@ print("After training for {} epochs".format(num_epochs))
 print("Val Acc {}".format(test_model(val_loader, model)))
 print("Test Acc {}".format(test_model(test_loader, model)))
 #After training for 10 epochs
-#Val Acc 64.54
-#Test Acc 63.72
+#Val Acc 65.52
+#Test Acc 65.344
 
 ####################################################################################
 ####################################################################################
@@ -1292,8 +1301,8 @@ print("After training for {} epochs".format(num_epochs))
 print("Val Acc {}".format(test_model(val_loader, model)))
 print("Test Acc {}".format(test_model(test_loader, model)))  
 #After training for 10 epochs
-#Val Acc 82.74
-#Test Acc 80.276
+#Val Acc 83.44
+#Test Acc 79.796
 
 ####################################################################################
 
@@ -1344,8 +1353,8 @@ print("After training for {} epochs".format(num_epochs))
 print("Val Acc {}".format(test_model(val_loader, model)))
 print("Test Acc {}".format(test_model(test_loader, model)))   
 #After training for 10 epochs
-#Val Acc 83.34
-#Test Acc 80.364
+#Val Acc 82.92
+#Test Acc 79.892
 
 ####################################################################################
 
@@ -1396,14 +1405,14 @@ print("After training for {} epochs".format(num_epochs))
 print("Val Acc {}".format(test_model(val_loader, model)))
 print("Test Acc {}".format(test_model(test_loader, model)))  
 #After training for 10 epochs
-#Val Acc 82.4
-#Test Acc 79.82
+#Val Acc 82.62
+#Test Acc 79.52
 
 ####################################################################################
 ####################################################################################
 
 #Test 3. Learning Rate Schedule
-#By Default Learning Rate is reduced linearly over the course of training.
+#By Default Learning Rate is reduced linearly over the course of training
 #Reset all other hyperparameters
 #Create a Non-Linear Learning Rate Schedule. Testing Exponential Learning Rate Schedule
 
@@ -1414,7 +1423,7 @@ num_epochs = 10 # number epoch to train
 criterion = torch.nn.CrossEntropyLoss()  
 optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
-#Creates Exponential Learning Rate Schedule
+#Creates Exponential Learning Rate Schedule (gamma is rate of decay)
 scheduler = torch.optim.lr_scheduler.ExponentialLR(optimizer, gamma = 0.1)
 
 # Function for testing the model
@@ -1458,5 +1467,5 @@ print("After training for {} epochs".format(num_epochs))
 print("Val Acc {}".format(test_model(val_loader, model)))
 print("Test Acc {}".format(test_model(test_loader, model)))
 #After training for 10 epochs
-#Val Acc 83.3
-#Test Acc 81.052
+#Val Acc 88.16
+#Test Acc 85.58
