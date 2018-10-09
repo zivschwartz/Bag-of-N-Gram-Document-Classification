@@ -298,7 +298,7 @@ print("Test Acc {}".format(test_model(test_loader, model)))
 #Val Acc 83.32
 #Test Acc 80.872
 
---------------------------------------------------------------------------
+####################################################################################
 #Varying hyperparameters: Test 1. Vocab Size (Default Vocab Size = 10000)
 #Every other hyperparameter held constant, Vocab Size tested at [20000, 40000, 80000] 
 
@@ -488,7 +488,7 @@ print("Test Acc {}".format(test_model(test_loader, model)))
 #Val Acc 85.38
 #Test Acc 82.008
 
---------------------------------------------------------------------------
+####################################################################################
 #Create the vocabulary of most common 40,000 tokens in the training set.
 max_vocab_size = 40000
 # save index 0 for unk and 1 for pad
@@ -675,7 +675,7 @@ print("Test Acc {}".format(test_model(test_loader, model)))
 #Val Acc 85.76
 #Test Acc 82.316
 
---------------------------------------------------------------------------
+####################################################################################
 #Create the vocabulary of most common 80,000 tokens in the training set.
 max_vocab_size = 80000
 # save index 0 for unk and 1 for pad
@@ -862,4 +862,4 @@ print("Test Acc {}".format(test_model(test_loader, model)))
 #Val Acc 86.82
 #Test Acc 82.368
 
---------------------------------------------------------------------------
+####################################################################################
