@@ -82,8 +82,8 @@ punctuations = string.punctuation
 
 #Make lowercase and remove punctuation
 def tokenize(sent):
-  tokens = tokenizer(sent)
-  return [token.text.lower() for token in tokens if (token.text not in punctuations)]
+    tokens = tokenizer(sent)
+    return [token.text.lower() for token in tokens if (token.text not in punctuations)]
 
 def tokenize_dataset(dataset):
     token_dataset = []
