@@ -686,8 +686,8 @@ print("After training for {} epochs".format(num_epochs))
 print("Val Acc {}".format(test_model(val_loader, model)))
 print("Test Acc {}".format(test_model(test_loader, model)))
 #After training for 10 epochs
-#Val Acc 85.76
-#Test Acc 82.316
+#Val Acc 85.98
+#Test Acc 81.836
 
 ####################################################################################
 
