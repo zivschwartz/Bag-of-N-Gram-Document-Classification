@@ -302,3 +302,6 @@ for epoch in range(num_epochs):
 print("After training for {} epochs".format(num_epochs))
 print("Val Acc {}".format(test_model(val_loader, model)))
 print("Test Acc {}".format(test_model(test_loader, model)))
+#After training for 10 epochs
+#Val Acc 83.32
+#Test Acc 80.872
