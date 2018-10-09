@@ -1241,8 +1241,60 @@ print("Test Acc {}".format(test_model(test_loader, model)))
 ####################################################################################
 
 #Test 2. Learning Rate (Default = 0.01)
-#Learning Rate tested at [0.05, 0.1
+#Learning Rate tested at [0.001, 0.05, 0.1]
 #Reset all other hyperparameters
+
+#Learning Rate = 0.001
+learning_rate = 0.001
+num_epochs = 10 # number epoch to train
+
+# Criterion and Optimizer
+criterion = torch.nn.CrossEntropyLoss()  
+optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
+
+# Function for testing the model
+def test_model(loader, model):
+    """
+    Help function that tests the model's performance on a dataset
+    @param: loader - data loader for the dataset to test against
+    """
+    correct = 0
+    total = 0
+    model.eval()
+    for data, lengths, labels in loader:
+        data_batch, length_batch, label_batch = data, lengths, labels
+        outputs = F.softmax(model(data_batch, length_batch), dim=1)
+        predicted = outputs.max(1, keepdim=True)[1]
+        
+        total += labels.size(0)
+        correct += predicted.eq(labels.view_as(predicted)).sum().item()
+    return (100 * correct / total)
+
+for epoch in range(num_epochs):
+    for i, (data, lengths, labels) in enumerate(train_loader):
+        model.train()
+        data_batch, length_batch, label_batch = data, lengths, labels
+        optimizer.zero_grad()
+        outputs = model(data_batch, length_batch)
+        loss = criterion(outputs, label_batch)
+        loss.backward()
+        optimizer.step()
+        # validate every 100 iterations
+        if i > 0 and i % 100 == 0:
+            # validate
+            val_acc = test_model(val_loader, model)
+            print('Epoch: [{}/{}], Step: [{}/{}], Validation Acc: {}'.format( 
+                       epoch+1, num_epochs, i+1, len(train_loader), val_acc))
+
+#Learning Rate = 0.001
+print("After training for {} epochs".format(num_epochs))
+print("Val Acc {}".format(test_model(val_loader, model)))
+print("Test Acc {}".format(test_model(test_loader, model)))  
+#After training for 10 epochs
+#Val Acc 82.74
+#Test Acc 80.276
+
+####################################################################################
 
 #Learning Rate = 0.05
 learning_rate = 0.05
@@ -1347,54 +1399,4 @@ print("Test Acc {}".format(test_model(test_loader, model)))
 #Test Acc 79.82
 
 ####################################################################################
-
-#Learning Rate = 0.001
-learning_rate = 0.001
-num_epochs = 10 # number epoch to train
-
-# Criterion and Optimizer
-criterion = torch.nn.CrossEntropyLoss()  
-optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
-
-# Function for testing the model
-def test_model(loader, model):
-    """
-    Help function that tests the model's performance on a dataset
-    @param: loader - data loader for the dataset to test against
-    """
-    correct = 0
-    total = 0
-    model.eval()
-    for data, lengths, labels in loader:
-        data_batch, length_batch, label_batch = data, lengths, labels
-        outputs = F.softmax(model(data_batch, length_batch), dim=1)
-        predicted = outputs.max(1, keepdim=True)[1]
-        
-        total += labels.size(0)
-        correct += predicted.eq(labels.view_as(predicted)).sum().item()
-    return (100 * correct / total)
-
-for epoch in range(num_epochs):
-    for i, (data, lengths, labels) in enumerate(train_loader):
-        model.train()
-        data_batch, length_batch, label_batch = data, lengths, labels
-        optimizer.zero_grad()
-        outputs = model(data_batch, length_batch)
-        loss = criterion(outputs, label_batch)
-        loss.backward()
-        optimizer.step()
-        # validate every 100 iterations
-        if i > 0 and i % 100 == 0:
-            # validate
-            val_acc = test_model(val_loader, model)
-            print('Epoch: [{}/{}], Step: [{}/{}], Validation Acc: {}'.format( 
-                       epoch+1, num_epochs, i+1, len(train_loader), val_acc))
-
-#Learning Rate = 0.001
-print("After training for {} epochs".format(num_epochs))
-print("Val Acc {}".format(test_model(val_loader, model)))
-print("Test Acc {}".format(test_model(test_loader, model)))  
-#After training for 10 epochs
-#Val Acc 82.74
-#Test Acc 80.276
 
