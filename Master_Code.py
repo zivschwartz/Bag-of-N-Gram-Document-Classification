@@ -2507,7 +2507,7 @@ print("Val Acc {}".format(test_model(val_loader, model)))
 print("Test Acc {}".format(test_model(test_loader, model)))           
 #After training for 10 epochs
 #Val Acc 87.92
-#Test Acc 85.868 ###Outperforms Default Model!!!
+#Test Acc 85.868 Outperforms Default Model!!!
 
 ####################################################################################
 ############################### Model Predictions ##################################
