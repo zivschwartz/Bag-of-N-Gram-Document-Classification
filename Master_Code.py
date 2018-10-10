@@ -310,7 +310,8 @@ print("Test Acc {}".format(test_model(test_loader, model)))
 ####################################################################################
 
 #Preprocessing and Cleaning the data 
-#Remove all HTML code from .txt files and pass a whitespace instead
+#Remove all HTML code and non-text characters from .txt files
+#Pass a whitespace for HTML code. No whitespace on other non-text characters
 
 space_tag = re.compile("(<br\s*/><br\s*/>)|(\/)|(\-)")
 no_space_tag = re.compile("(\?)|(\!)|(\,)|(\')|(\")|(\:)|(\.)|(\;)|(\[)|(\])|(\))|(\()")
