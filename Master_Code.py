@@ -1,6 +1,7 @@
 #Loading the data
 import pandas as pd
 import numpy as np
+import matplotlip.pyplot as plt
 import random
 from os import listdir
 import re
