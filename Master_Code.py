@@ -2508,3 +2508,50 @@ print("Test Acc {}".format(test_model(test_loader, model)))
 #After training for 10 epochs
 #Val Acc 87.92
 #Test Acc 85.868 ###Outperforms Default Model!!!
+
+####################################################################################
+################################### Appendix #######################################
+####################################################################################
+
+#Validation Accuracy Plots
+
+#N-Size
+%matplotlib inline
+n_size = (1, 2, 3, 4)
+n_val_acc = (83.4, 49.74, 50.26, 49.74)
+
+plt.plot(n_size, n_val_acc, linestyle='-', marker='o', label = 'Validation Accuracy')
+plt.title('N Size Validation Curve')
+plt.legend(loc = 'center right')
+plt.xlabel('N Size')
+plt.ylabel('Accuracy')
+
+#Vocab Size
+vocab_size = (10000, 20000, 40000, 80000)
+vocab_val_acc = (83.4, 85.2, 85.98, 86.28)
+
+plt.plot(vocab_size, vocab_val_acc, linestyle='-', marker='o', label = 'Validation Accuracy')
+plt.title('Vocabulary Size Validation Curve')
+plt.legend(loc = 'center right')
+plt.xlabel('Vocabulary Size')
+plt.ylabel('Accuracy')
+
+#Embedding Size
+embed_size = (25, 50, 100, 150)
+embed_val_acc = (83.74, 83.5, 83.4, 82.98)
+
+plt.plot(embed_size, embed_val_acc, linestyle='-', marker='o', label = 'Validation Accuracy')
+plt.title('Embedding Size Validation Curve')
+plt.legend(loc = 'best')
+plt.xlabel('Embedding Size')
+plt.ylabel('Accuracy')
+
+#Learning Rate
+lr_size = (0.001, 0.01, 0.05, 0.1)
+lr_val_acc = (83.44, 83.48, 82.92, 82.62)
+
+plt.plot(lr_size, lr_val_acc, linestyle='-', marker='o', label = 'Validation Accuracy')
+plt.title('Learning Rate Validation Curve')
+plt.legend(loc = 'best')
+plt.xlabel('Learning Rate')
+plt.ylabel('Accuracy')
