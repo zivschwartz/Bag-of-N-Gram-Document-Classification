@@ -2313,7 +2313,7 @@ print("Test Acc {}".format(test_model(test_loader, model)))
 #Building optimized model after tuning all hyperparameters of choice
 #Optimal Hyperparameters:
 #Tokenization: spaCy Tokenizer with no preprocessing, n = 1, Vocab Size = 80,000, 
-#Embedding Size = 25, Optimizer = Adam, Learning Rate = 0.01, Exponential Decay 
+#Embedding Size = 25, Optimizer = Adam, Learning Rate = 0.01, Learning Rate Schedule = Exponential Decay 
 
 #Loading train, validation, test and all token files
 train_data_tokens = pkl.load(open("train_data_tokens.p", "rb"))
