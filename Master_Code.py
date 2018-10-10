@@ -2510,6 +2510,103 @@ print("Test Acc {}".format(test_model(test_loader, model)))
 #Test Acc 85.868 ###Outperforms Default Model!!!
 
 ####################################################################################
+############################### Model Predictions ##################################
+####################################################################################
+
+#Outputs a prediction tensor
+def predict_model(loader, model):
+    """
+    Help function that tests the model's performance on a dataset
+    @param: loader - data loader for the dataset to test against
+    """
+    correct = 0
+    total = 0
+    model.eval()
+    for data, lengths, labels in loader:
+        data_batch, length_batch, label_batch = data, lengths, labels
+        outputs = F.softmax(model(data_batch, length_batch), dim=1)
+        predicted = outputs.max(1, keepdim=True)[1]
+        
+        total += labels.size(0)
+        correct += predicted.eq(labels.view_as(predicted)).sum().item()
+    #return (100 * correct / total)
+    return predicted
+
+############################### Correct Predictions ################################
+
+print(val[0], val_target[0]) #Positive 
+#This is one of the best Jodie Foster movies out there and largely ignored due to the general public's misconception of it as a teen flick. 
+#It has wonderful performances, particularly a fight scene between Jodie and her mother, played by a convincing Sally Kellerman. 
+#The three girls that play Jodie's friends are somewhat amateurish but I do think it is worth seeing. 1
+
+print(val[3], val_target[3]) #Positive
+#getting to work on this film when it was made back in the summer of 1990. 
+#Shot partly in the Biltmore Estate in Asheville, NC and the remaining parts in Winston-Salem. 
+#The massive offices of the RJ Reynolds were used in several office scenes and places in around the beautiful city that is know as the tulip capital of the world Winston-Salem! 
+#I enjoyed my work although it was exceedingly hard work building all the sets like the Golf of Mexico where Renee Russo and Jim Belushi went on their date. 
+#I also had a big hand in decorating the bar where Larry encounters the magical bartender Mr. Destiny. 
+#I tacked all those pics on the wall of sports heroes and decorated that phone booth where larry makes a phone call for a cab. 
+#I even put my mothers photo at eye level so i could freeze frame it and show it to her when we watched it. 
+#I remember dyeing the grass at his old house with green dye because it first had to be sodded(it was a new house in a new development and I guess they leased it for the movie)..
+#then I had to cut that newly laid sod to make it look nice..man that was hard! 
+#As far as the movie, when we made it we had no idea what it would be like but after seeing it i fell in love with it because really tells the story of "what if" as good as I ever had seen it, including the great It's a Wonderful Life.
+#I cried so many times<br /><br />i can't count. I got to meet the wonderful actor Michael Caine while shooting scenes at an old minor league ballpark where Larry's boyhood scenes were played and replayed. 
+#I remember after he had done a take an was heading back to his trailer, I ran him down and asked him for a picture and he was quite amiable and said "why not!"
+#He is a good guy and a really natural and forceful actor. I can't say the same for Jim Belushi..he was so full of himself, smoking big cuban cigars and talking loudly so<br /><br />everyone in earshot could hear his every word. 
+#His career never did take off but he has had a decent TV career recently. I would say watch this movie if you ever get the chance. It's wonderful and really heartfelt and real. 
+#You can feel Larry's pain after he enters into the new world Mr. Destiny gives him after hitting the homer, and as he wants so badly for people to believe he is not this bad guy everyone thinks he is.
+#They all think he belongs in a nuthouse! But eventually he wins people over but by then he wants his real life back so badly, especially his wonderful wife, played so beautifully by Linda Hamilton..and he wants his dog back! So see it. 1
+
+print(val[4], val_target[4]) #Negative
+#Saw it yesterday night at the Midnight Slam of the Festival des films du Monde in Montreal. What a disappointment. 
+#This movie is clearly over rated by IMDb fans. The acting was only but regular. The directing didn't bring anything new or interesting.
+#The plot lacks considerably : the movie is all about those college grads and the game they play making prank calls(7eventy 5ive).
+#And on top of that, you can predict the movie's end in the first five minutes. 
+#If you like prank calls and a slasher with an axe that makes you jump only once or twice during the whole movie, you might like it. 
+#If you don't, this movie is not worth it. 0
+
+############################# Incorrect Predictions ################################
+
+print(val[1], val_target[1]) #Positive
+#"Ardh Satya" is one of the finest film ever made in Indian Cinema. 
+#Directed by the great director Govind Nihalani, this one is the most successful Hard Hitting Parallel Cinema which also turned out to be a Commercial Success.
+#Even today, Ardh Satya is an inspiration for all leading directors of India.
+#<br /><br />The film tells the Real-life Scenario of Mumbai Police of the 70s. 
+#Unlike any Police of other cities in India, Mumbai Police encompasses a Different system altogether. 
+#Govind Nihalani creates a very practical Outlay with real life approach of Mumbai Police Environment.<br /><br />
+#Amongst various Police officers & colleagues, the film describes the story of Anand Velankar, a young hot-blooded Cop coming from a poor family.
+#His father is a harsh Police Constable. Anand himself suffers from his father's ideologies & incidences of his father's Atrocities on his mother. 
+#Anand's approach towards immediate action against crime, is an inert craving for his own Job satisfaction. 
+#The film is here revolved in a Plot wherein Anand's constant efforts against crime are trampled by his seniors.
+#This leads to frustrations, as he cannot achieve the desired Job-satisfaction. 
+#Resulting from the frustrations, his anger is expressed in excessive violence in the remand rooms & bars, also turning him to an alcoholic.<br /><br />
+#The Spirit within him is still alive, as he constantly fights the system. He is aware of the system of the Metro, where the Police & Politicians are a inertly associated by far end. 
+#His compromise towards unethical practice is negative. Finally he gets suspended.<br /><br />
+#The Direction is a master piece & thoroughly hard core. One of the best memorable scenes is when Anand breaks in the Underworld gangster Rama Shetty's house to arrest him, followed by short conversation which is fantastic. 
+#At many scenes, the film has Hair-raising moments.<br /><br />The Practical approach of Script is a major Punch.
+#Alcoholism, Corruption, Political Influence, Courage, Deceptions all are integral part of Mumbai police even today. 
+#Those aspects are dealt brilliantly.<br /><br />Finally, the films belongs to the One man show, Om Puri portraying Anand Velankar traversing through all his emotions absolutely brilliantly. 1
+
+print(val[2], val_target[2]) #Positive
+#But the rest of us, who love a good sentimental and emotional story that is a lock to get you crying..enjoy! <br /><br />
+#Tom Hulce is magnificent as Dominick, a mentally slow trashman who loves professional wrestling and his brother, Eugene, played by Ray Liotta, who is a doctor and who works very long hours. <br /><br />
+#Due to Eugene's work schedule, Dominick is alone a lot of the time and tends to make questionable judgment calls. 
+#He really just wants to be a good boy, to do the right thing, and to make his brother proud of him. 
+#He stops in church to pray at one point and expresses his emotions so openly and so well that the character has you crying before the damn movie even gets really started. <br /><br />
+#Not about to give anything away here, but the movie is extremely involving and sad and heartbreaking. 
+#Those unafraid of these things will have a field day with this beautiful story, its loving characters and a great song I cannot quote here, that has nothing to do with the movie at all but is strangely appropriate..
+#but you hear it in a bar.<br /><br />I thought Tom Hulce would be nominated for this movie, since he was for 'Amadeus' I figured that might give him the inside track to actually winning. No such luck. 
+#Liotta is just as good but has less of an emotional impact, but then he does later on. 
+#All I can say about Jamie Lee Curtis is that she doesn't have much of a part here but it was nice of her to lend her name to a small drama set in Pittsburgh about two brothers who you will never forget. 1
+
+print(val[5], val_target[5]) #Negative
+#An obvious b-grade effort to cash in on the Hostel/Saw buzz, my expectations for this film were low (really low!) and yet it still managed to disappoint on every level. 
+#The acting is so bad it's not even funny, the plot-line is non-existent and the only scare was realizing that I had wasted 1hour 21 minutes watching it! I'm surprised to note that 34 people gave it a 10 star rating. 
+#I can only suspect that 33 of these are Cast and Crew. The 34th is possibly the directors mother? - 
+#although I'm sure even she would find it hard to go higher than a 2! DVD extras include an hour long "making of" feature. 
+#Which raises the question, "Why?" (although perhaps it serves to demonstrate what not to do!). Avoid at all costs. 0
+
+####################################################################################
 ################################### Appendix #######################################
 ####################################################################################
 
