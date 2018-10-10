@@ -1,4 +1,3 @@
-#Loading the data
 import pandas as pd
 import numpy as np
 import matplotlip.pyplot as plt
@@ -8,12 +7,15 @@ import re
 import spacy
 import string
 import pickle as pkl
+import nltk
+from nltk.util import ngrams
 from collections import Counter
 import torch
 from torch.utils.data import Dataset
 import torch.nn as nn
 import torch.nn.functional as F
 
+#Loading the data
 #Load single .txt file
 def load_doc(filename):
     file = open(filename, 'r')
