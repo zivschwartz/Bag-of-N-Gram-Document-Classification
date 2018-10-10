@@ -764,11 +764,9 @@ for epoch in range(num_epochs):
 print("After training for {} epochs".format(num_epochs))
 print("Val Acc {}".format(test_model(val_loader, model)))
 print("Test Acc {}".format(test_model(test_loader, model)))
-print("Train Acc {}".format(test_model(train_loader, model)))
 #After training for 10 epochs
 #Val Acc 49.74
 #Test Acc 50.0
-#Train Acc 50.065
 
 ####################################################################################
 
@@ -957,11 +955,9 @@ for epoch in range(num_epochs):
 print("After training for {} epochs".format(num_epochs))
 print("Val Acc {}".format(test_model(val_loader, model)))
 print("Test Acc {}".format(test_model(test_loader, model)))
-print("Train Acc {}".format(test_model(train_loader, model)))
 #After training for 10 epochs
 #Val Acc 50.26
 #Test Acc 50.0
-#Train Acc 49.935
 
 ####################################################################################
 
@@ -1150,11 +1146,9 @@ for epoch in range(num_epochs):
 print("After training for {} epochs".format(num_epochs))
 print("Val Acc {}".format(test_model(val_loader, model)))
 print("Test Acc {}".format(test_model(test_loader, model)))
-print("Train Acc {}".format(test_model(train_loader, model)))
 #After training for 10 epochs
 #Val Acc 49.74
 #Test Acc 50.0
-#Train Acc 50.065
 
 ####################################################################################
 ####################################################################################
